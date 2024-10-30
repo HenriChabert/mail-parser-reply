@@ -59,7 +59,7 @@ MAIL_LANGUAGES: Dict[str, Dict[str, str]] = {
         # <QUOTED_MATCH_INCLUDE> – allow matching this inside quoted levels
         # On\s(?:.+?\s?.+?)\swrote:) – match "On 01.01.2025, John Doe wrote:"
         #   See multiline_on.txt for example data
-        'wrote_header': r'^(?!On[.\s]*On\s(.+?\s?.+?)\swrote:)(' + QUOTED_MATCH_INCLUDE + r'On\s(?:.+?\s?.+?)\s?wrote:)$',
+        'wrote_header': r'^(?!On[.\s]*On\s(?:.+?\s?.+?)\swrote:)(' + QUOTED_MATCH_INCLUDE + r'On\s(?:.+?\s?.+?)\s?wrote:)$',
         # Outlook-style header
         # (?:(?:^|\n)[* ]*(?:From|Sent|To|Subject|Date|Cc):[ *]* – match From:/*From*:, ... headers
         # (?:\s{,2}).*){2,} – allow multi-line headers; some clients split the headers up into multiple lines.
@@ -91,7 +91,7 @@ MAIL_LANGUAGES: Dict[str, Dict[str, str]] = {
     'fr': {
         'wrote_header': r'(?!Le.*Le .+?a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)('
                         + QUOTED_MATCH_INCLUDE
-                        + r'Le (.+?)a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)',
+                        + r'Le (?:.+?)a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)',
         'from_header': r'((?:(?:^|\n|\n'
                        + QUOTED_MATCH_INCLUDE
                        + r')[* ]*(?:De |Envoy\u00e9 |\u00C0 |Objet |  |Cc ):[ *]*(?:\s{,2}).*){2,}(?:\n.*){,1})',
