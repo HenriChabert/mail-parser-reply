@@ -69,13 +69,13 @@ MAIL_LANGUAGES: Dict[str, Dict[str, str]] = {
                        + QUOTED_MATCH_INCLUDE
                        + r')[* ]*(?:From|Sent|To|Subject|Date|Cc|Organization):[ *]*(?:\s{,2}).*){2,}(?:\n.*){,1})',
         'disclaimers': [
-            'CAUTION:',
-            'Disclaimer:',
-            'Warning:',
-            'Confidential:',
-            'CONFIDENTIALITY:',
-            '(?:Privileged|Confidential|Private|Sensitive|Important) (?:Notice|Note|Information):',
-            '[\* ]*Disclaimer[\* ]*',
+            r'CAUTION:',
+            r'Disclaimer:',
+            r'Warning:',
+            r'Confidential:',
+            r'CONFIDENTIALITY:',
+            r'(?:Privileged|Confidential|Private|Sensitive|Important) (?:Notice|Note|Information):',
+            r'[\* ]*Disclaimer[\* ]*',
         ],
         'signatures': [
             'Best regards',
@@ -89,9 +89,9 @@ MAIL_LANGUAGES: Dict[str, Dict[str, str]] = {
         'sent_from': 'Sent from my|Get Outlook for',
     },
     'fr': {
-        'wrote_header': r'(?!Le.*Le\s.+?a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)('
+        'wrote_header': r'(?!Le.*Le .+?a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)('
                         + QUOTED_MATCH_INCLUDE
-                        + r'Le\s(.+?)a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)',
+                        + r'Le (.+?)a \u00e9crit[a-zA-Z0-9.:;<>()&@ -]*:)',
         'from_header': r'((?:(?:^|\n|\n'
                        + QUOTED_MATCH_INCLUDE
                        + r')[* ]*(?:De |Envoy\u00e9 |\u00C0 |Objet |  |Cc ):[ *]*(?:\s{,2}).*){2,}(?:\n.*){,1})',
@@ -168,6 +168,6 @@ MAIL_LANGUAGES: Dict[str, Dict[str, str]] = {
         'from_header': r'((?:^ *' + QUOTED_MATCH_INCLUDE + r'\[?Original Message processed by david.+?$\n{,4})'
                        + r'(?:.*\n?){,2}'  # david's non-subject line + date wildcard identification
                        + r'(?:(?:^|\n|\n'
-                       + QUOTED_MATCH_INCLUDE + ')[* ]*(?:Von|An|Cc)(?:\s{,2}).*){2,})'
+                       + QUOTED_MATCH_INCLUDE + r')[* ]*(?:Von|An|Cc)(?:\s{,2}).*){2,})'
     },
 }
